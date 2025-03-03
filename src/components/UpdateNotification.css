@@ -1,0 +1,53 @@
+
+.update-notification {
+  position: fixed;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px 8px 0 0;
+  padding: 20px;
+  transition: bottom 0.3s ease-in-out;
+  z-index: 1000;
+  width: 90%;
+  max-width: 500px;
+}
+
+.update-notification.visible {
+  bottom: 0;
+}
+
+.update-content {
+  text-align: center;
+}
+
+.update-content h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.update-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.primary-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.secondary-button {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
