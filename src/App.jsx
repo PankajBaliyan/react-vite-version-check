@@ -8,7 +8,6 @@ function App() {
   const [version, setVersion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [newVersionAvailable, setNewVersionAvailable] = useState(null);
-  const checkInterval = 5000; // Check every 5 seconds
 
   // Fetch the version on mount
   useEffect(() => {
@@ -25,25 +24,26 @@ function App() {
     };
     fetchVersion();
 
-    // Set up periodic version check
-    const intervalId = setInterval(async () => {
-      try {
-        const response = await fetch("/version.json?t=" + new Date().getTime());
-        const data = await response.json();
-        if (version && data.version !== version) {
-          console.log("version here");
-          setNewVersionAvailable(data.version);
-        }
-      } catch (error) {
-        console.error("Error checking for updates:", error);
+    // Listen for version updates from the global version checker
+    const handleNewVersion = (event) => {
+      if (version && event.detail.version !== version) {
+        console.log(`New version available: ${version} → ${event.detail.version}`);
+        setNewVersionAvailable(event.detail.version);
       }
-    }, checkInterval);
-
-    return () => clearInterval(intervalId);
+    };
+    
+    document.addEventListener('newVersionAvailable', handleNewVersion);
+    
+    return () => {
+      document.removeEventListener('newVersionAvailable', handleNewVersion);
+    };
   }, [version]);
 
   const handleRefresh = () => {
-    window.location.reload(true);
+    // Import and use the improved forceHardReload function
+    import('./utils/checkVersion').then(module => {
+      module.forceHardReload();
+    });
   };
 
   // Version-specific content

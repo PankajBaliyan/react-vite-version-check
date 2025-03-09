@@ -1,6 +1,62 @@
 
 .update-notification {
   position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  max-width: 400px;
+  transform: translateY(200%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  border-left: 4px solid #2d8cff;
+}
+
+.update-notification.visible {
+  transform: translateY(0);
+}
+
+.update-content h3 {
+  margin-top: 0;
+  color: #2d8cff;
+}
+
+.update-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.primary-button {
+  background-color: #2d8cff;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.secondary-button {
+  background-color: transparent;
+  color: #666;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.auto-update-timer {
+  font-size: 14px;
+  color: #666;
+  margin: 10px 0;
+}
+
+
+.update-notification {
+  position: fixed;
   bottom: -100px;
   left: 50%;
   transform: translateX(-50%);
