@@ -41,12 +41,10 @@ patch += 1;
 // Construct new version
 const newVersion = `${major}.${minor}.${patch}`;
 
-// Write updated version back to version.json
+// Save new version
 try {
-  const newVersionData = { version: newVersion };
-  writeFileSync(versionFilePath, JSON.stringify(newVersionData, null, 2), "utf8");
-  console.log(`✅ Version updated from ${currentVersion} to ${newVersion}`);
+  writeFileSync(versionFilePath, JSON.stringify({ version: newVersion }, null, 2), "utf8");
+  console.log(`Version updated: ${currentVersion} → ${newVersion}`);
 } catch (error) {
-  console.error(`❌ Failed to update version from ${currentVersion} to ${newVersion}:`, error);
-  process.exit(1);
+  console.error("Error writing version.json:", error);
 }

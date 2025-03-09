@@ -4,6 +4,9 @@ import UpdateNotification from "./components/UpdateNotification";
 import ThemeSwitcher from "./components/ThemeSwitcher";
 import VersionHistory from "./components/VersionHistory";
 
+// Update mode: 0 for notification with update button, 1 for direct update without notification
+const UPDATE_MODE = 0; // Change to 1 for direct update without notification
+
 function App() {
   const [version, setVersion] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -28,7 +31,16 @@ function App() {
     const handleNewVersion = (event) => {
       if (version && event.detail.version !== version) {
         console.log(`New version available: ${version} → ${event.detail.version}`);
-        setNewVersionAvailable(event.detail.version);
+        
+        if (UPDATE_MODE === 1) {
+          // If update mode is 1, directly update without showing notification
+          import('./utils/checkVersion').then(module => {
+            module.forceHardReload();
+          });
+        } else {
+          // If update mode is 0, show notification with update button
+          setNewVersionAvailable(event.detail.version);
+        }
       }
     };
     

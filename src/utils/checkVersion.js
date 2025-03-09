@@ -1,39 +1,39 @@
+// Version checking utility
 
-const VERSION_CHECK_INTERVAL = 10 * 1000; // Check every 10 seconds
-let currentVersion = null;
+// Check for version updates every 10 seconds
+export const startVersionCheck = (callback) => {
+  // Initial check
+  checkVersion(callback);
 
-export const startVersionCheck = (onNewVersion) => {
-  fetchVersion().then((version) => {
-    currentVersion = version;
-  });
-
-  setInterval(async () => {
-    const newVersion = await fetchVersion();
-    if (currentVersion && newVersion !== currentVersion) {
-      console.log(`New version detected: ${currentVersion} → ${newVersion}`);
-      // Call callback if provided (for notification)
-      if (onNewVersion) {
-        onNewVersion(newVersion);
-      }
-    }
-    currentVersion = newVersion;
-  }, VERSION_CHECK_INTERVAL);
+  // Set interval for periodic checks
+  setInterval(() => {
+    checkVersion(callback);
+  }, 10000); // 10 seconds
 };
 
-export const fetchVersion = async () => {
+// Check if a new version is available
+const checkVersion = async (callback) => {
   try {
-    // Add cache-busting timestamp
+    // Add timestamp to bust cache
     const response = await fetch(`/version.json?t=${new Date().getTime()}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
     const data = await response.json();
-    return data.version;
+    console.log("newVersion", data.version);
+
+    if (data && data.version) {
+      callback(data.version);
+    }
   } catch (error) {
-    console.error("Failed to fetch version:", error);
-    return currentVersion;
+    console.error("Error checking for updates:", error);
   }
 };
 
+// Force a hard reload to clear cache and get the latest version
 export const forceHardReload = () => {
-  // Clear all caches and local storage
+  // Clear cache by removing all cached resources
   if ('caches' in window) {
     caches.keys().then(names => {
       names.forEach(name => {
@@ -41,13 +41,13 @@ export const forceHardReload = () => {
       });
     });
   }
-  
-  // Clear localStorage
+
+  // Clear local storage
   localStorage.clear();
-  
-  // Clear sessionStorage
+
+  // Clear session storage
   sessionStorage.clear();
-  
-  // Hard reload to get completely fresh app
+
+  // Force reload the page
   window.location.reload(true);
 };
