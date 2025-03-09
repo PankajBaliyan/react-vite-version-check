@@ -4,7 +4,8 @@ import './VersionHistory.css';
 
 function VersionHistory({ currentVersion }) {
   const [isOpen, setIsOpen] = useState(false);
-  
+
+  // version history array
   const versionHistory = [
     { 
       version: '1.0.4', 
