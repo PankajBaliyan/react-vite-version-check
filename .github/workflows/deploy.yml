@@ -2,23 +2,23 @@ name: Build and Deploy Portfolio App (Production)
 
 on:
   push:
-    branches:
-      - main # Trigger deployment on push to the main branch
+    branches: [ main ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       # Step 1: Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # Step 2: Set up Node.js environment
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '20' # Adjust Node.js version if needed
+          node-version: '22'
+          cache: 'npm'
 
       # Step 3: Create .env.production file with GitHub Secrets
 #      - name: Create .env.production file
@@ -27,11 +27,14 @@ jobs:
 
       # Step 4: Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Increment version
+        run: node scripts/incrementVersion.js
 
       # Step 5: Build the Vite app
       - name: Build project
-        run: npm run build # This will generate the production build in the "dist" folder
+        run: npm run build:ci
 
       # Step 6: Clean remote folder except .htaccess
       - name: Clean remote folder except .htaccess
