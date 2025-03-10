@@ -8,6 +8,7 @@ import { dirname } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// get the version file path
 const versionFilePath = join(__dirname, "../public/version.json");
 
 // Get latest Git commit hash
