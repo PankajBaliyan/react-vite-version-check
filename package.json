@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run increment-version && vite build",
+    "build:ci": "npm run increment-version && vite build",
     "preview": "vite preview",
     "increment-version": "node scripts/incrementVersion.js",
     "lint": "eslint ."
