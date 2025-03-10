@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run increment-version && vite build",    
-    "build:ci": "node scripts/deploymentSetup.js && vite build",
+    "build": "npm run increment-version && vite build",
     "preview": "vite preview",
     "increment-version": "node scripts/incrementVersion.js",
     "lint": "eslint ."
