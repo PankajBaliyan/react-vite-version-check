@@ -10,7 +10,7 @@ function ColorTheme() {
     ocean: { primary: '#0ea5e9', secondary: '#38bdf8' },
     forest: { primary: '#22c55e', secondary: '#4ade80' }
   };
-
+  // handle color change
   const handleColorChange = (colorTheme) => {
     setSelectedColor(colorTheme);
     document.documentElement.style.setProperty('--primary-color', colors[colorTheme].primary);
