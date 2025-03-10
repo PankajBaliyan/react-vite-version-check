@@ -1,0 +1,54 @@
+.color-theme {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.color-theme h3 {
+  margin: 0;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  color: var(--primary-color, #4f46e5);
+}
+
+.color-options {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.color-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: capitalize;
+  position: relative;
+}
+
+.color-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.color-button.selected {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary-color, #4f46e5);
+}
+
+body.theme-dark .color-button.selected {
+  box-shadow: 0 0 0 2px #2d2d2d, 0 0 0 4px var(--primary-color, #4f46e5);
+}

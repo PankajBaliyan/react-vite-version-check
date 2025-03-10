@@ -1,109 +1,104 @@
-
 .update-notification {
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   right: 20px;
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  padding: 20px;
-  max-width: 400px;
-  transform: translateY(200%);
-  transition: transform 0.3s ease-in-out;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 16px 20px;
+  max-width: 320px;
+  transform: translateX(150%);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1000;
-  border-left: 4px solid #2d8cff;
+  border-left: 4px solid #4CAF50;
 }
 
 .update-notification.visible {
-  transform: translateY(0);
+  transform: translateX(0);
+}
+
+.update-content {
+  position: relative;
 }
 
 .update-content h3 {
-  margin-top: 0;
-  color: #2d8cff;
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.update-content h3::before {
+  content: "🔄";
+  font-size: 14px;
+}
+
+.update-content p {
+  margin: 0 0 16px 0;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.4;
 }
 
 .update-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 15px;
+  gap: 8px;
 }
 
 .primary-button {
-  background-color: #2d8cff;
+  background-color: #4CAF50;
   color: white;
   border: none;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
-  font-weight: 500;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.primary-button:hover {
+  background-color: #45a049;
+  transform: translateY(-1px);
 }
 
 .secondary-button {
   background-color: transparent;
   color: #666;
-  border: 1px solid #ccc;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.auto-update-timer {
-  font-size: 14px;
-  color: #666;
-  margin: 10px 0;
-}
-
-
-.update-notification {
-  position: fixed;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: white;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 8px 8px 0 0;
-  padding: 20px;
-  transition: bottom 0.3s ease-in-out;
-  z-index: 1000;
-  width: 90%;
-  max-width: 500px;
-}
-
-.update-notification.visible {
-  bottom: 0;
-}
-
-.update-content {
-  text-align: center;
-}
-
-.update-content h3 {
-  margin-top: 0;
-  color: #333;
-}
-
-.update-actions {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.primary-button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.secondary-button {
-  background-color: #f5f5f5;
-  color: #333;
   border: 1px solid #ddd;
   padding: 8px 16px;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-size: 14px;
   cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.secondary-button:hover {
+  background-color: #f5f5f5;
+  border-color: #ccc;
+}
+
+/* Dark theme support */
+body.theme-dark .update-notification {
+  background-color: #2d2d2d;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body.theme-dark .update-content h3 {
+  color: #fff;
+}
+
+body.theme-dark .update-content p {
+  color: #bbb;
+}
+
+body.theme-dark .secondary-button {
+  color: #bbb;
+  border-color: #444;
+}
+
+body.theme-dark .secondary-button:hover {
+  background-color: #333;
+  border-color: #555;
 }

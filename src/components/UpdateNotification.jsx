@@ -1,44 +1,40 @@
-
 import { useState, useEffect } from 'react';
 import './UpdateNotification.css';
 
 function UpdateNotification({ newVersion, currentVersion, onRefresh }) {
-  const [visible, setVisible] = useState(true);
-  const [autoUpdateTimer, setAutoUpdateTimer] = useState(null);
+  const [visible, setVisible] = useState(false);
   
-  // Optional: Add auto-update countdown (uncomment if desired)
-  /*
   useEffect(() => {
-    if (visible) {
-      // Auto-update after 60 seconds
-      const countdown = 60;
-      setAutoUpdateTimer(countdown);
-      
-      const timer = setInterval(() => {
-        setAutoUpdateTimer(prev => {
-          if (prev <= 1) {
-            clearInterval(timer);
-            onRefresh();
-            return 0;
-          }
-          return prev - 1;
-        });
-      }, 1000);
-      
-      return () => clearInterval(timer);
-    }
-  }, [visible, onRefresh]);
-  */
-  
+    // Small delay before showing the notification for a smooth entrance
+    const timer = setTimeout(() => {
+      setVisible(true);
+    }, 300);
+    
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleUpdate = () => {
+    setVisible(false);
+    // Small delay before refresh to allow animation to complete
+    setTimeout(onRefresh, 400);
+  };
+
+  const handleDismiss = () => {
+    setVisible(false);
+  };
+
   return (
     <div className={`update-notification ${visible ? 'visible' : ''}`}>
       <div className="update-content">
-        <h3>New Version Available!</h3>
-        <p>Version {newVersion} is now available. You're currently using {currentVersion}.</p>
-        {autoUpdateTimer && <p className="auto-update-timer">Auto-updating in {autoUpdateTimer} seconds...</p>}
+        <h3>New Version Available</h3>
+        <p>Version {newVersion} is ready to install. You're currently on {currentVersion}.</p>
         <div className="update-actions">
-          <button className="primary-button" onClick={onRefresh}>Update Now</button>
-          <button className="secondary-button" onClick={() => setVisible(false)}>Later</button>
+          <button className="primary-button" onClick={handleUpdate}>
+            Update Now
+          </button>
+          <button className="secondary-button" onClick={handleDismiss}>
+            Later
+          </button>
         </div>
       </div>
     </div>
