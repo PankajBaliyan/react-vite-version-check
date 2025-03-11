@@ -3,6 +3,7 @@ import "./App.css";
 import UpdateNotification from "./components/UpdateNotification";
 import WelcomeMessage from "./components/WelcomeMessage";
 import ColorTheme from "./components/ColorTheme";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 // 0 -> Send update notification
 // 1 -> Auto hard reload
@@ -69,6 +70,7 @@ function App() {
             </p>
             {<WelcomeMessage />}
             {<ColorTheme />}
+            {<ThemeSwitcher />}
           </>
         )}
       </div>
