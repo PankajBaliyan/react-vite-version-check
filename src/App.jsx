@@ -5,7 +5,7 @@ import WelcomeMessage from "./components/WelcomeMessage";
 import ColorTheme from "./components/ColorTheme";
 import NotificationPreferences from "./components/NotificationPreferences";
 
-const UPDATE_MODE = 0;
+const UPDATE_MODE = 1;
 
 function App() {
   const [version, setVersion] = useState(null);
@@ -28,10 +28,12 @@ function App() {
 
     const handleNewVersion = (event) => {
       if (version && event.detail.version !== version) {
-        console.log(`New version available: ${version} → ${event.detail.version}`);
-        
+        console.log(
+          `New version available: ${version} → ${event.detail.version}`,
+        );
+
         if (UPDATE_MODE === 1) {
-          import('./utils/checkVersion').then(module => {
+          import("./utils/checkVersion").then((module) => {
             module.forceHardReload();
           });
         } else {
@@ -39,16 +41,16 @@ function App() {
         }
       }
     };
-    
-    document.addEventListener('newVersionAvailable', handleNewVersion);
-    
+
+    document.addEventListener("newVersionAvailable", handleNewVersion);
+
     return () => {
-      document.removeEventListener('newVersionAvailable', handleNewVersion);
+      document.removeEventListener("newVersionAvailable", handleNewVersion);
     };
   }, [version]);
 
   const handleRefresh = () => {
-    import('./utils/checkVersion').then(module => {
+    import("./utils/checkVersion").then((module) => {
       module.forceHardReload();
     });
   };
@@ -61,7 +63,9 @@ function App() {
           <p className="version-text">Loading version...</p>
         ) : (
           <>
-            <p className="version-text">Current Version: {version || "Unknown"}</p>
+            <p className="version-text">
+              Current Version: {version || "Unknown"}
+            </p>
             {<WelcomeMessage />}
             {<ColorTheme />}
             {<NotificationPreferences />}
