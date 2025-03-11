@@ -5,6 +5,27 @@
   text-align: center;
 }
 
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.app-logo {
+  width: 80px;
+  height: 80px;
+  animation: logo-pulse 2s infinite alternate;
+}
+
+@keyframes logo-pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
 .App {
   display: flex;
   flex-direction: column;

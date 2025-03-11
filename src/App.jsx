@@ -60,6 +60,9 @@ function App() {
   return (
     <div className="App">
       <div className="version-container">
+        <div className="logo-container">
+          <img src="/logo.svg" alt="Version Checker Logo" className="app-logo" />
+        </div>
         <h1>React-Vite Version Checker</h1>
         {loading ? (
           <p className="version-text">Loading version...</p>
