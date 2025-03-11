@@ -3,9 +3,10 @@ import "./App.css";
 import UpdateNotification from "./components/UpdateNotification";
 import WelcomeMessage from "./components/WelcomeMessage";
 import ColorTheme from "./components/ColorTheme";
-import NotificationPreferences from "./components/NotificationPreferences";
 
-const UPDATE_MODE = 1;
+// 0 -> Send update notification
+// 1 -> Auto hard reload
+const UPDATE_MODE = 0;
 
 function App() {
   const [version, setVersion] = useState(null);
@@ -68,7 +69,6 @@ function App() {
             </p>
             {<WelcomeMessage />}
             {<ColorTheme />}
-            {<NotificationPreferences />}
           </>
         )}
       </div>
