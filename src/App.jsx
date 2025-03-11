@@ -9,6 +9,8 @@ import ThemeSwitcher from "./components/ThemeSwitcher";
 // 1 -> Auto hard reload
 const UPDATE_MODE = 0;
 
+// comment
+
 function App() {
   const [version, setVersion] = useState(null);
   const [loading, setLoading] = useState(true);
