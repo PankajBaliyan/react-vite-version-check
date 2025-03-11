@@ -4,7 +4,6 @@ import UpdateNotification from "./components/UpdateNotification";
 import WelcomeMessage from "./components/WelcomeMessage";
 import ColorTheme from "./components/ColorTheme";
 import NotificationPreferences from "./components/NotificationPreferences";
-import KeyboardShortcuts from "./components/KeyboardShortcuts";
 
 const UPDATE_MODE = 0;
 
@@ -54,19 +53,6 @@ function App() {
     });
   };
 
-  const renderVersionSpecificFeatures = () => {
-    if (version === "1.0.0") {
-      return <WelcomeMessage />;
-    } else if (version === "1.0.2") {
-      return <ColorTheme />;
-    } else if (version === "1.0.3") {
-      return <NotificationPreferences />;
-    } else if (version === "1.0.5") {
-      return <KeyboardShortcuts />;
-    }
-    return null;
-  };
-
   return (
     <div className="App">
       <div className="version-container">
@@ -76,7 +62,9 @@ function App() {
         ) : (
           <>
             <p className="version-text">Current Version: {version || "Unknown"}</p>
-            {renderVersionSpecificFeatures()}
+            {<WelcomeMessage />}
+            {<ColorTheme />}
+            {<NotificationPreferences />}
           </>
         )}
       </div>
