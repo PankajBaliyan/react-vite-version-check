@@ -59,7 +59,7 @@ function App() {
   return (
     <div className="App">
       <div className="version-container">
-        <h1>React-Vite Version Check App</h1>
+        <h1>React-Vite Version Checker</h1>
         {loading ? (
           <p className="version-text">Loading version...</p>
         ) : (
